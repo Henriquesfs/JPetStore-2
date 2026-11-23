@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public final class TestDatabase {
 
-	public static final String DRIVER = "org.hsqldb.jdbcDriver";
+	public static final String DRIVER = "org.hsqldb.jdbc.JDBCDriver";
 
 	public static final String URL = "jdbc:hsqldb:mem:jpetstore";
 

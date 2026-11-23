@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Product">
+
+	<resultMap id="result" type="org.springframework.samples.jpetstore.domain.Product">
+		<result property="productId" column="productid"/>
+		<result property="name" column="name"/>
+		<result property="description" column="descn"/>
+		<result property="categoryId" column="category"/>
+	</resultMap>
+
+	<select id="getProduct" resultMap="result">
+		select productid, name, descn, category from product where productid = #{value}
+	</select>
+
+	<select id="getProductListByCategory" resultMap="result">
+		select productid, name, descn, category from product where category = #{value}
+	</select>
+
+	<select id="searchProductList" resultMap="result">
+		select productid, name, descn, category from product
+		<where>
+			<foreach collection="keywordList" item="keyword" open="(" separator="OR" close=")">
+				lower(name) like #{keyword} OR lower(category) like #{keyword} OR lower(descn) like #{keyword}
+			</foreach>
+		</where>
+	</select>
+
+</mapper>

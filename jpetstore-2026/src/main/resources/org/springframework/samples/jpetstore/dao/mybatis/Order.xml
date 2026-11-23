@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Order">
+
+	<resultMap id="result" type="org.springframework.samples.jpetstore.domain.Order">
+		<result property="billAddress1" column="billaddr1"/>
+		<result property="billAddress2" column="billaddr2"/>
+		<result property="billCity" column="billcity"/>
+		<result property="billCountry" column="billcountry"/>
+		<result property="billState" column="billstate"/>
+		<result property="billToFirstName" column="billtofirstname"/>
+		<result property="billToLastName" column="billtolastname"/>
+		<result property="billZip" column="billzip"/>
+		<result property="shipAddress1" column="shipaddr1"/>
+		<result property="shipAddress2" column="shipaddr2"/>
+		<result property="shipCity" column="shipcity"/>
+		<result property="shipCountry" column="shipcountry"/>
+		<result property="shipState" column="shipstate"/>
+		<result property="shipToFirstName" column="shiptofirstname"/>
+		<result property="shipToLastName" column="shiptolastname"/>
+		<result property="shipZip" column="shipzip"/>
+		<result property="cardType" column="cardtype"/>
+		<result property="courier" column="courier"/>
+		<result property="creditCard" column="creditcard"/>
+		<result property="expiryDate" column="exprdate"/>
+		<result property="locale" column="locale"/>
+		<result property="orderDate" column="orderdate"/>
+		<result property="orderId" column="orderid"/>
+		<result property="totalPrice" column="totalprice"/>
+		<result property="username" column="userid"/>
+		<result property="status" column="status"/>
+	</resultMap>
+
+	<sql id="columnsAndJoins">
+		select billaddr1, billaddr2, billcity, billcountry, billstate, billtofirstname, billtolastname, billzip,
+		shipaddr1, shipaddr2, shipcity, shipcountry, shipstate, shiptofirstname, shiptolastname, shipzip,
+		cardtype, courier, creditcard, exprdate, locale, orderdate, orders.orderid, totalprice, userid, status
+		from orders, orderstatus
+		where orders.orderid = orderstatus.orderid
+	</sql>
+
+	<select id="getOrder" resultMap="result">
+		<include refid="columnsAndJoins"/>
+		and orders.orderid = #{value}
+	</select>
+
+	<select id="getOrdersByUsername" resultMap="result">
+		<include refid="columnsAndJoins"/>
+		and orders.userid = #{value}
+	</select>
+
+	<insert id="insertOrder">
+		insert into orders (orderid, userid, orderdate, shipaddr1, shipaddr2, shipcity, shipstate, shipzip,
+		shipcountry, billaddr1, billaddr2, billcity, billstate, billzip, billcountry, courier, totalprice,
+		billtofirstname, billtolastname, shiptofirstname, shiptolastname, creditcard, exprdate, cardtype, locale)
+		values (#{orderId}, #{username}, #{orderDate}, #{shipAddress1}, #{shipAddress2,jdbcType=VARCHAR},
+		#{shipCity}, #{shipState}, #{shipZip}, #{shipCountry}, #{billAddress1}, #{billAddress2,jdbcType=VARCHAR},
+		#{billCity}, #{billState}, #{billZip}, #{billCountry}, #{courier}, #{totalPrice}, #{billToFirstName},
+		#{billToLastName}, #{shipToFirstName}, #{shipToLastName}, #{creditCard}, #{expiryDate}, #{cardType},
+		#{locale})
+	</insert>
+
+	<insert id="insertOrderStatus">
+		insert into orderstatus (orderid, linenum, timestamp, status)
+		values (#{orderId}, #{orderId}, #{orderDate}, #{status})
+	</insert>
+
+</mapper>

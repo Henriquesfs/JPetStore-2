@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Item">
+
+	<resultMap id="result" type="org.springframework.samples.jpetstore.domain.Item">
+		<result property="itemId" column="itemid"/>
+		<result property="listPrice" column="listprice"/>
+		<result property="unitCost" column="unitcost"/>
+		<result property="supplierId" column="supplier"/>
+		<result property="productId" column="productid"/>
+		<result property="product.productId" column="productid"/>
+		<result property="product.name" column="name"/>
+		<result property="product.description" column="descn"/>
+		<result property="product.categoryId" column="category"/>
+		<result property="status" column="status"/>
+		<result property="attribute1" column="attr1"/>
+		<result property="attribute2" column="attr2"/>
+		<result property="attribute3" column="attr3"/>
+		<result property="attribute4" column="attr4"/>
+		<result property="attribute5" column="attr5"/>
+	</resultMap>
+
+	<resultMap id="resultWithQuantity" type="org.springframework.samples.jpetstore.domain.Item" extends="result">
+		<result property="quantity" column="qty"/>
+	</resultMap>
+
+	<select id="getItemListByProduct" resultMap="result">
+		select itemid, listprice, unitcost, supplier, i.productid, name, descn, category, status,
+		attr1, attr2, attr3, attr4, attr5
+		from item i, product p where p.productid = i.productid and i.productid = #{value}
+	</select>
+
+	<select id="getItem" resultMap="resultWithQuantity">
+		select i.itemid, listprice, unitcost, supplier, i.productid, name, descn, category, status,
+		attr1, attr2, attr3, attr4, attr5, qty
+		from item i, inventory v, product p
+		where p.productid = i.productid and i.itemid = v.itemid and i.itemid = #{value}
+	</select>
+
+	<select id="getInventoryQuantity" resultType="int">
+		select qty from inventory where itemid = #{value}
+	</select>
+
+	<update id="updateInventoryQuantity">
+		update inventory set qty = qty - #{increment} where itemid = #{itemId}
+	</update>
+
+</mapper>
