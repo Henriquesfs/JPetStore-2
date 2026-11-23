@@ -2,18 +2,16 @@ package org.springframework.samples.jpetstore.dao;
 
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
-import org.springframework.samples.jpetstore.domain.Item;
-import org.springframework.samples.jpetstore.domain.Order;
+import org.springframework.samples.jpetstore.model.Item;
+import org.springframework.samples.jpetstore.model.Order;
 
 public interface ItemDao {
 
-  public void updateQuantity(Order order) throws DataAccessException;
+	void updateQuantity(Order order);
 
-  boolean isItemInStock(String itemId) throws DataAccessException;
+	boolean isItemInStock(String itemId);
 
-  List getItemListByProduct(String productId) throws DataAccessException;
+	List<Item> getItemListByProduct(String productId);
 
-  Item getItem(String itemId) throws DataAccessException;
-
+	Item getItem(String itemId);
 }

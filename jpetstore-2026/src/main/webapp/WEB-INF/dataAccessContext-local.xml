@@ -23,29 +23,4 @@
 		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
 
-	<bean id="accountDao" class="org.springframework.samples.jpetstore.dao.mybatis.MyBatisAccountDao">
-		<constructor-arg ref="sqlSession"/>
-	</bean>
-
-	<bean id="categoryDao" class="org.springframework.samples.jpetstore.dao.mybatis.MyBatisCategoryDao">
-		<constructor-arg ref="sqlSession"/>
-	</bean>
-
-	<bean id="productDao" class="org.springframework.samples.jpetstore.dao.mybatis.MyBatisProductDao">
-		<constructor-arg ref="sqlSession"/>
-	</bean>
-
-	<bean id="itemDao" class="org.springframework.samples.jpetstore.dao.mybatis.MyBatisItemDao">
-		<constructor-arg ref="sqlSession"/>
-	</bean>
-
-	<bean id="orderDao" class="org.springframework.samples.jpetstore.dao.mybatis.MyBatisOrderDao">
-		<constructor-arg ref="sqlSession"/>
-		<constructor-arg ref="sequenceDao"/>
-	</bean>
-
-	<bean id="sequenceDao" class="org.springframework.samples.jpetstore.dao.mybatis.MyBatisSequenceDao">
-		<constructor-arg ref="sqlSession"/>
-	</bean>
-
 </beans>

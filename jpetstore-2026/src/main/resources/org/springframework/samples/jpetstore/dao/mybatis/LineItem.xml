@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="LineItem">
 
-	<resultMap id="result" type="org.springframework.samples.jpetstore.domain.LineItem">
+	<resultMap id="result" type="org.springframework.samples.jpetstore.model.LineItem">
 		<result property="orderId" column="orderid"/>
 		<result property="lineNumber" column="linenum"/>
 		<result property="itemId" column="itemid"/>

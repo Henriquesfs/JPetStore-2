@@ -1,8 +1,8 @@
 INSERT INTO sequence VALUES ('ordernum', 1000);
 INSERT INTO sequence VALUES ('linenum', 1000);
 
-INSERT INTO signon VALUES ('j2ee','j2ee');
-INSERT INTO signon VALUES ('ACID','ACID');
+INSERT INTO signon VALUES ('j2ee','$2a$10$hYvtDjvRoBpLjX7md.XJ3ukSVLa/Uc46aaZWYMJJL0floV.kJ2GcW');
+INSERT INTO signon VALUES ('ACID','$2a$10$T/mxRPPc3nKLFNPjMLe2N.HcR0tjjcd1NYBlLhYlim/ih0VZz3aN.');
 
 INSERT INTO account VALUES ('j2ee','yourname@yourdomain.com','ABC', 'XYX', 'OK', '901 San Antonio Road', 'MS UCUP02-206', 'Palo Alto', 'CA', '94303', 'USA',  '555-555-5555');
 INSERT INTO account VALUES ('ACID','acid@yourdomain.com','ABC', 'XYX', 'OK', '901 San Antonio Road', 'MS UCUP02-206', 'Palo Alto', 'CA', '94303', 'USA',  '555-555-5555');

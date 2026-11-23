@@ -2,13 +2,11 @@ package org.springframework.samples.jpetstore.dao;
 
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
-import org.springframework.samples.jpetstore.domain.Category;
+import org.springframework.samples.jpetstore.model.Category;
 
 public interface CategoryDao {
 
-	List getCategoryList() throws DataAccessException;
+	List<Category> getCategoryList();
 
-  Category getCategory(String categoryId) throws DataAccessException;
-
+	Category getCategory(String categoryId);
 }

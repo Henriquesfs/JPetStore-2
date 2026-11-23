@@ -1,32 +1,17 @@
 package org.springframework.samples.jpetstore.dao.mybatis;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Sequence {
 
 	private String name;
 
 	private int nextId;
-
-	public Sequence() {
-	}
-
-	public Sequence(String name, int nextId) {
-		this.name = name;
-		this.nextId = nextId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getNextId() {
-		return nextId;
-	}
-
-	public void setNextId(int nextId) {
-		this.nextId = nextId;
-	}
 }

@@ -1,20 +1,11 @@
-<p>&nbsp;</p>
 
-<table align="center">
-  <tr>
-	  <td>
-			<a href="http://www.springframework.org">
-				<img border="0" align="center" src="../images/poweredBySpring.gif" alt="Powered by the Spring Framework"/>
-			</a>
-		</td>
-		<td>
-			<a href="http://www.ibatis.com">
-				<img border="0" align="center" src="../images/poweredby.gif" alt="Powered by iBATIS"/>
-			</a>
-		</td>
-	</tr>
-</table>
+</main>
 
-<p align="center">
-	(Currently running on the Spring web tier)
-</p>
+<footer class="footer">
+  <div class="container">
+    JPetStore Demo &middot; Powered by the <a href="https://spring.io">Spring Framework</a> and <a href="https://mybatis.org">MyBatis</a>
+  </div>
+</footer>
+
+</body>
+</html>

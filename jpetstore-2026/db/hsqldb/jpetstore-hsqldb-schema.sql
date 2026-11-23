@@ -31,7 +31,7 @@ create table supplier (
 
 create table signon (
     username varchar(25) not null,
-    password varchar(25)  not null,
+    password varchar(60) not null,
     constraint pk_signon primary key (username)
 );
 

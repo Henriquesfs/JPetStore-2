@@ -1,84 +1,66 @@
 <%@ include file="IncludeTop.jsp" %>
 
-<table border="0" width="100%" cellspacing="0" cellpadding="0">
-<tr><td valign="top" width="20%" align="left">
-<table align="left" bgcolor="#008800" border="0" cellspacing="2" cellpadding="2">
-<tr><td bgcolor="#FFFF88">
-<a href="<c:url value="/shop/index.do"/>"><b><font color="BLACK" size="2">&lt;&lt; Main Menu</font></b></a>
-</td></tr>
-</table>
-</td><td valign="top" align="center">
-<h2 align="center">Shopping Cart</h2>
+<div class="page-head">
+  <h2>Shopping Cart</h2>
+  <a class="back" href="<c:url value="/shop/index.do"/>">Main Menu</a>
+</div>
+
+<div class="with-aside">
+<div class="card">
 <form action="<c:url value="/shop/updateCartQuantities.do"/>" method="post">
-<table align="center" bgcolor="#008800" border="0" cellspacing="2" cellpadding="5">
-  <tr bgcolor="#cccccc">
-  <td><b>Item ID</b></td>  <td><b>Product ID</b></td>  <td><b>Description</b></td> <td><b>In Stock?</b></td> <td><b>Quantity</b></td>  <td><b>List Price</b></td> <td><b>Total Cost</b></td>  <td>&nbsp;</td>
-  </tr>
-
+  <div class="table-wrap">
+  <table class="table">
+    <tr><th>Item ID</th><th>Product ID</th><th>Description</th><th class="center">In Stock?</th><th class="center">Quantity</th><th class="num">List Price</th><th class="num">Total Cost</th><th></th></tr>
 <c:if test="${cart.numberOfItems == 0}">
-<tr bgcolor="#FFFF88"><td colspan="8"><b>Your cart is empty.</b></td></tr>
+    <tr><td colspan="8"><b>Your cart is empty.</b></td></tr>
 </c:if>
-
 <c:forEach var="cartItem" items="${cart.cartItemList.pageList}">
-  <tr bgcolor="#FFFF88">
-  <td><b>
-  <a href="<c:url value="/shop/viewItem.do"><c:param name="itemId" value="${cartItem.item.itemId}"/></c:url>">
-    <c:out value="${cartItem.item.itemId}"/>
-  </a></b></td>
-  <td><c:out value="${cartItem.item.productId}"/></td>
-  <td>
-    <c:out value="${cartItem.item.attribute1}"/>
-    <c:out value="${cartItem.item.attribute2}"/>
-    <c:out value="${cartItem.item.attribute3}"/>
-    <c:out value="${cartItem.item.attribute4}"/>
-    <c:out value="${cartItem.item.attribute5}"/>
-    <c:out value="${cartItem.item.product.name}"/>
-   </td>
-  <td align="center"><c:out value="${cartItem.inStock}"/></td>
-  <td align="center">
-  <input type="text" size="3" name="<c:out value="${cartItem.item.itemId}"/>" value="<c:out value="${cartItem.quantity}"/>" />
-  </td>
-  <td align="right"><fmt:formatNumber value="${cartItem.item.listPrice}" pattern="$#,##0.00" /></td>
-  <td align="right"><fmt:formatNumber value="${cartItem.totalPrice}" pattern="$#,##0.00" /></td>
-  <td><a href="<c:url value="/shop/removeItemFromCart.do"><c:param name="workingItemId" value="${cartItem.item.itemId}"/></c:url>">
-    <img border="0" src="../images/button_remove.gif" />
-  </a></td>
-  </tr>
+    <tr>
+      <td class="id"><a href="<c:url value="/shop/viewItem.do"><c:param name="itemId" value="${cartItem.item.itemId}"/></c:url>"><c:out value="${cartItem.item.itemId}"/></a></td>
+      <td><c:out value="${cartItem.item.productId}"/></td>
+      <td>
+        <c:out value="${cartItem.item.attribute1}"/>
+        <c:out value="${cartItem.item.attribute2}"/>
+        <c:out value="${cartItem.item.attribute3}"/>
+        <c:out value="${cartItem.item.attribute4}"/>
+        <c:out value="${cartItem.item.attribute5}"/>
+        <c:out value="${cartItem.item.product.name}"/>
+      </td>
+      <td class="center"><c:out value="${cartItem.inStock}"/></td>
+      <td class="center"><input type="text" size="3" name="<c:out value="${cartItem.item.itemId}"/>" value="<c:out value="${cartItem.quantity}"/>" aria-label="Quantity"/></td>
+      <td class="num"><fmt:formatNumber value="${cartItem.item.listPrice}" pattern="$#,##0.00"/></td>
+      <td class="num"><fmt:formatNumber value="${cartItem.totalPrice}" pattern="$#,##0.00"/></td>
+      <td class="num"><a class="btn btn-light btn-small" href="<c:url value="/shop/removeItemFromCart.do"><c:param name="workingItemId" value="${cartItem.item.itemId}"/></c:url>">Remove</a></td>
+    </tr>
 </c:forEach>
-<tr bgcolor="#FFFF88">
-<td colspan="7" align="right">
-<b>Sub Total: <fmt:formatNumber value="${cart.subTotal}" pattern="$#,##0.00" /></b><br/>
-<input type="image" border="0" src="../images/button_update_cart.gif" name="update" />
-</td>
-<td>&nbsp;</td>
-</tr>
-</table>
-<center>
+  </table>
+  </div>
+  <div class="totals">
+    <span>Sub Total: <fmt:formatNumber value="${cart.subTotal}" pattern="$#,##0.00"/></span>
+    <button class="btn btn-light" type="submit" name="update">Update Cart</button>
+  </div>
+  <div class="pager">
   <c:if test="${!cart.cartItemList.firstPage}">
-    <a href="<c:url value="viewCart.do?page=previousCart"/>"><font color="green"><B>&lt;&lt; Prev</B></font></a>
+    <a href="<c:url value="viewCart.do?page=previousCart"/>">&laquo; Prev</a>
   </c:if>
   <c:if test="${!cart.cartItemList.lastPage}">
-    <a href="<c:url value="viewCart.do?page=nextCart"/>"><font color="green"><B>Next &gt;&gt;</B></font></a>
+    <a href="<c:url value="viewCart.do?page=nextCart"/>">Next &raquo;</a>
   </c:if>
-</center>
+  </div>
 </form>
-
 <c:if test="${cart.numberOfItems > 0}">
-<br /><center><a href="<c:url value="/shop/checkout.do"/>"><img border="0" src="../images/button_checkout.gif" /></a></center>
+  <div class="actions"><a class="btn" href="<c:url value="/shop/checkout.do"/>">Proceed to Checkout</a></div>
 </c:if>
+</div>
 
-</td>
-
-<td valign="top" width="20%" align="right">
+<div>
 <c:if test="${!empty userSession.account.username}">
   <c:if test="${userSession.account.listOption}">
     <%@ include file="IncludeMyList.jsp" %>
   </c:if>
 </c:if>
-</td>
-
-</tr>
-</table>
+</div>
+</div>
 
 <%@ include file="IncludeBanner.jsp" %>
 

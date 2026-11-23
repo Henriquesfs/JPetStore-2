@@ -1,39 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xmlns:aop="http://www.springframework.org/schema/aop"
 		xmlns:context="http://www.springframework.org/schema/context"
 		xmlns:tx="http://www.springframework.org/schema/tx"
 		xsi:schemaLocation="
 			http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-			http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd
 			http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
 			http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<context:property-placeholder location="/WEB-INF/jdbc.properties"/>
 
-	<bean id="accountValidator" class="org.springframework.samples.jpetstore.domain.logic.AccountValidator"/>
+	<context:component-scan base-package="org.springframework.samples.jpetstore.service, org.springframework.samples.jpetstore.validator, org.springframework.samples.jpetstore.dao"/>
 
-	<bean id="orderValidator" class="org.springframework.samples.jpetstore.domain.logic.OrderValidator"/>
+	<tx:annotation-driven/>
 
-	<bean id="petStore" class="org.springframework.samples.jpetstore.domain.logic.PetStoreImpl">
-		<property name="accountDao" ref="accountDao"/>
-		<property name="categoryDao" ref="categoryDao"/>
-		<property name="productDao" ref="productDao"/>
-		<property name="itemDao" ref="itemDao"/>
-		<property name="orderDao" ref="orderDao"/>
-	</bean>
-
-	<aop:config>
-		<aop:advisor pointcut="execution(* *..PetStoreFacade.*(..))" advice-ref="txAdvice"/>
-	</aop:config>
-
-	<tx:advice id="txAdvice">
-		<tx:attributes>
-			<tx:method name="insert*"/>
-			<tx:method name="update*"/>
-			<tx:method name="*" read-only="true"/>
-		</tx:attributes>
-	</tx:advice>
+	<bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
 </beans>

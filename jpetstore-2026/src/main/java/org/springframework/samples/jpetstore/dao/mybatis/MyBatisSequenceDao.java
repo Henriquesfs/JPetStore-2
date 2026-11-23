@@ -1,15 +1,15 @@
 package org.springframework.samples.jpetstore.dao.mybatis;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.dao.DataRetrievalFailureException;
+import org.springframework.stereotype.Repository;
 
+@Repository
+@RequiredArgsConstructor
 public class MyBatisSequenceDao {
 
 	private final SqlSession sqlSession;
-
-	public MyBatisSequenceDao(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
 
 	public int getNextId(String name) {
 		Sequence sequence = sqlSession.selectOne("Sequence.getSequence", new Sequence(name, -1));

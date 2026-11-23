@@ -1,7 +1,8 @@
 <%@ include file="IncludeTop.jsp" %>
 
-<H3>Error!</H3>
-
-<B><c:out value="${message}" default="No further information was provided."/></B>
+<div class="card narrow">
+  <h2>Error!</h2>
+  <div class="alert"><c:out value="${message}" default="No further information was provided."/></div>
+</div>
 
 <%@ include file="IncludeBottom.jsp" %>

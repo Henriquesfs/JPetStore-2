@@ -1,77 +1,26 @@
 <%@ include file="IncludeTop.jsp" %>
 
-<table border="0" cellspacing="0" width="100%">
-  <tbody>
-  <tr>
-    <td valign="top" width="100%">
+<section class="hero">
+  <div>
+    <c:if test="${!empty userSession.account}">
+      <span class="welcome">Welcome <c:out value="${userSession.account.firstName}"/>!</span>
+    </c:if>
+    <h1>Find the right <em>pet</em> for your home</h1>
+    <p>Fish, dogs, reptiles, cats and birds, ready to be added to your cart.</p>
+    <a class="btn" href="<c:url value="/shop/viewCategory.do?categoryId=FISH"/>">Browse the catalog</a>
+  </div>
+  <div class="hero-art">
+    <img src="../images/splash.gif" width="350" height="355" alt="JPetStore pets"/>
+  </div>
+</section>
 
-      <table align="left" border="0" cellspacing="0" width="80%">
-        <tbody>
-        <tr>
-          <td valign="top">
-
-            <!-- SIDEBAR -->
-
-            <table bgcolor="#FFFF88" border="0" cellspacing="0" cellpadding="5" width="200">
-              <tbody>
-      <tr>
-      <td>
-        <c:if test="${!empty userSession.account}">
-					<b><i><font size="2" color="BLACK">Welcome <c:out value="${userSession.account.firstName}"/>!</font></i></b>
-        </c:if>
-        &nbsp;
-      </td>
-      </tr>
-              <tr>
-                <td>
-                <a href="<c:url value="/shop/viewCategory.do?categoryId=FISH"/>">
-                <img border="0" src="../images/fish_icon.gif" /></a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                <a href="<c:url value="/shop/viewCategory.do?categoryId=DOGS"/>">
-                <img border="0" src="../images/dogs_icon.gif" /></a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                <a href="<c:url value="/shop/viewCategory.do?categoryId=CATS"/>">
-                <img border="0" src="../images/cats_icon.gif" /></a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                <a href="<c:url value="/shop/viewCategory.do?categoryId=REPTILES"/>">
-                <img border="0" src="../images/reptiles_icon.gif" /></a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                <a href="<c:url value="/shop/viewCategory.do?categoryId=BIRDS"/>">
-                <img border="0" src="../images/birds_icon.gif" /></a>
-                </td>
-              </tr>
-
-              </tbody>
-             </table>
-
-           </td>
-          <td align="center" bgcolor="white" height="300" width="100%">
-
-          <!-- MAIN IMAGE -->
-
-          <map name="estoremap"><area alt="Birds" coords="72,2,280,250" href="viewCategory.do?categoryId=BIRDS" shape="RECT" />
-          <area alt="Fish" coords="2,180,72,250" href="viewCategory.do?categoryId=FISH" shape="RECT" />
-          <area alt="Dogs" coords="60,250,130,320" href="viewCategory.do?categoryId=DOGS" shape="RECT" />
-          <area alt="Reptiles" coords="140,270,210,340" href="viewCategory.do?categoryId=REPTILES" shape="RECT" />
-          <area alt="Cats" coords="225,240,295,310" href="viewCategory.do?categoryId=CATS" shape="RECT" />
-          <area alt="Birds" coords="280,180,350,250" href="viewCategory.do?categoryId=BIRDS" shape="RECT" /></map>
-          <img border="0" height="355" src="../images/splash.gif" align="center" usemap="#estoremap" width="350" />
-          </td></tr></tbody></table></td></tr>
-
-        </tbody>
-        </table>
+<div class="category-grid">
+  <a class="category-card" href="<c:url value="/shop/viewCategory.do?categoryId=FISH"/>"><img src="../images/fish1.jpg" alt=""/>Fish</a>
+  <a class="category-card" href="<c:url value="/shop/viewCategory.do?categoryId=DOGS"/>"><img src="../images/dog1.jpg" alt=""/>Dogs</a>
+  <a class="category-card" href="<c:url value="/shop/viewCategory.do?categoryId=CATS"/>"><img src="../images/cat1.jpg" alt=""/>Cats</a>
+  <a class="category-card" href="<c:url value="/shop/viewCategory.do?categoryId=REPTILES"/>"><img src="../images/lizard1.jpg" alt=""/>Reptiles</a>
+  <a class="category-card" href="<c:url value="/shop/viewCategory.do?categoryId=BIRDS"/>"><img src="../images/bird1.jpg" alt=""/>Birds</a>
+</div>
 
 <%@ include file="IncludeBanner.jsp" %>
 

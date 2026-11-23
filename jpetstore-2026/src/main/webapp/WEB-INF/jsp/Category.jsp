@@ -1,33 +1,30 @@
 <%@ include file="IncludeTop.jsp" %>
 
-<table align="left" bgcolor="#008800" border="0" cellspacing="2" cellpadding="2">
-<tr><td bgcolor="#FFFF88">
-<a href="<c:url value="/shop/index.do"/>"><b><font color="BLACK" size="2"/>&lt;&lt; Main Menu</font></b></a>
-</td></tr>
-</table>
-
-<p>
-<center>
+<div class="page-head">
   <h2><c:out value="${category.name}"/></h2>
-  </center>
-<table align="center" bgcolor="#008800" border="0" cellspacing="2" cellpadding="3">
-  <tr bgcolor="#CCCCCC">  <td><b>Product ID</b></td>  <td><b>Name</b></td>  </tr>
-<c:forEach var="product" items="${productList.pageList}">
-  <tr bgcolor="#FFFF88">
-  <td><b><a href="<c:url value="/shop/viewProduct.do"><c:param name="productId" value="${product.productId}"/></c:url>">
-	  <font color="BLACK"><c:out value="${product.productId}"/></font>
-	</a></b></td>
-  <td><c:out value="${product.name}"/></td>
-  </tr>
-</c:forEach>
-  <tr><td>
+  <a class="back" href="<c:url value="/shop/index.do"/>">Main Menu</a>
+</div>
+
+<div class="card medium">
+  <div class="table-wrap">
+  <table class="table">
+    <tr><th>Product ID</th><th>Name</th></tr>
+  <c:forEach var="product" items="${productList.pageList}">
+    <tr>
+      <td class="id"><a href="<c:url value="/shop/viewProduct.do"><c:param name="productId" value="${product.productId}"/></c:url>"><c:out value="${product.productId}"/></a></td>
+      <td><c:out value="${product.name}"/></td>
+    </tr>
+  </c:forEach>
+  </table>
+  </div>
+  <div class="pager">
   <c:if test="${!productList.firstPage}">
-    <a href="?page=previous"><font color="white"><B>&lt;&lt; Prev</B></font></a>
+    <a href="?page=previous">&laquo; Prev</a>
   </c:if>
   <c:if test="${!productList.lastPage}">
-    <a href="?page=next"><font color="white"><B>Next &gt;&gt;</B></font></a>
+    <a href="?page=next">Next &raquo;</a>
   </c:if>
-  </td></tr>
-</table>
+  </div>
+</div>
 
-<%@ include file="IncludeBottom.jsp" %></p></p>
+<%@ include file="IncludeBottom.jsp" %>

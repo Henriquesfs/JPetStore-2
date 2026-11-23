@@ -1,75 +1,68 @@
 <%@ include file="IncludeTop.jsp" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<!-- Support for Spring errors holder -->
+<div class="card medium">
+
 <spring:bind path="orderForm.*">
+  <c:if test="${!empty status.errorMessages}">
+  <div class="alert">
   <c:forEach var="error" items="${status.errorMessages}">
-    <B><FONT color=RED>
-      <BR><c:out value="${error}"/>
-    </FONT></B>
+    <div><c:out value="${error}"/></div>
   </c:forEach>
+  </div>
+  </c:if>
 </spring:bind>
 
 <form action="<c:url value="/shop/newOrder.do"/>" method="post">
-
-<TABLE bgcolor="#008800" border=0 cellpadding=3 cellspacing=1 bgcolor="#FFFF88">
-<TR bgcolor="#FFFF88"><TD colspan=2>
-<FONT color=GREEN size=4><B>Shipping Address</B></FONT>
-</TD></TR>
-
-<TR bgcolor="#FFFF88"><TD>
-First name:</TD><TD>
+<h3 class="section-title">Shipping Address</h3>
+<div class="form-grid">
+  <label class="field">First name:
   <spring:bind path="orderForm.order.shipToFirstName">
-	  <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
+    <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
   </spring:bind>
-</TD></TR>
-<TR bgcolor="#FFFF88"><TD>
-Last name:</TD><TD>
+  </label>
+  <label class="field">Last name:
   <spring:bind path="orderForm.order.shipToLastName">
-	  <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
+    <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
   </spring:bind>
-</TD></TR>
-<TR bgcolor="#FFFF88"><TD>
-Address 1:</TD><TD>
+  </label>
+  <label class="field wide">Address 1:
   <spring:bind path="orderForm.order.shipAddress1">
-	  <input type="text" size="40" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
+    <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
   </spring:bind>
-</TD></TR>
-<TR bgcolor="#FFFF88"><TD>
-Address 2:</TD><TD>
+  </label>
+  <label class="field wide">Address 2:
   <spring:bind path="orderForm.order.shipAddress2">
-	  <input type="text" size="40" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
+    <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
   </spring:bind>
-</TD></TR>
-<TR bgcolor="#FFFF88"><TD>
-City: </TD><TD>
+  </label>
+  <label class="field">City:
   <spring:bind path="orderForm.order.shipCity">
-	  <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
+    <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
   </spring:bind>
-</TD></TR>
-<TR bgcolor="#FFFF88"><TD>
-State:</TD><TD>
+  </label>
+  <label class="field">State:
   <spring:bind path="orderForm.order.shipState">
-	  <input type="text" size="4" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
+    <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
   </spring:bind>
-</TD></TR>
-<TR bgcolor="#FFFF88"><TD>
-Zip:</TD><TD>
+  </label>
+  <label class="field">Zip:
   <spring:bind path="orderForm.order.shipZip">
-	  <input type="text" size="10" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
+    <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
   </spring:bind>
-</TD></TR>
-<TR bgcolor="#FFFF88"><TD>
-Country: </TD><TD>
+  </label>
+  <label class="field">Country:
   <spring:bind path="orderForm.order.shipCountry">
-	  <input type="text" size="15" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
+    <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
   </spring:bind>
-</TD></TR>
+  </label>
+</div>
 
-</TABLE>
-<P>
-<input type="image" src="../images/button_submit.gif">
+<div class="actions">
+  <button class="btn" type="submit">Continue</button>
+</div>
 
 </form>
+</div>
 
 <%@ include file="IncludeBottom.jsp" %>

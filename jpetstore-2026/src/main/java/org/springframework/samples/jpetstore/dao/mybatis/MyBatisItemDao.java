@@ -1,48 +1,44 @@
 package org.springframework.samples.jpetstore.dao.mybatis;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.RequiredArgsConstructor;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.samples.jpetstore.dao.ItemDao;
-import org.springframework.samples.jpetstore.domain.Item;
-import org.springframework.samples.jpetstore.domain.LineItem;
-import org.springframework.samples.jpetstore.domain.Order;
+import org.springframework.samples.jpetstore.model.Item;
+import org.springframework.samples.jpetstore.model.LineItem;
+import org.springframework.samples.jpetstore.model.Order;
+import org.springframework.stereotype.Repository;
 
+@Repository
+@RequiredArgsConstructor
 public class MyBatisItemDao implements ItemDao {
 
 	private final SqlSession sqlSession;
 
-	public MyBatisItemDao(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
-
+	@Override
 	public void updateQuantity(Order order) {
-		for (Object element : order.getLineItems()) {
-			LineItem lineItem = (LineItem) element;
-			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("itemId", lineItem.getItemId());
-			parameters.put("increment", lineItem.getQuantity());
-			sqlSession.update("Item.updateInventoryQuantity", parameters);
+		for (LineItem lineItem : order.getLineItems()) {
+			sqlSession.update("Item.updateInventoryQuantity",
+					Map.of("itemId", lineItem.getItemId(), "increment", lineItem.getQuantity()));
 		}
 	}
 
+	@Override
 	public boolean isItemInStock(String itemId) {
 		Integer quantity = sqlSession.selectOne("Item.getInventoryQuantity", itemId);
 		return quantity != null && quantity > 0;
 	}
 
-	public List getItemListByProduct(String productId) {
+	@Override
+	public List<Item> getItemListByProduct(String productId) {
 		return sqlSession.selectList("Item.getItemListByProduct", productId);
 	}
 
+	@Override
 	public Item getItem(String itemId) {
-		Item item = sqlSession.selectOne("Item.getItem", itemId);
-		if (item != null) {
-			Integer quantity = sqlSession.selectOne("Item.getInventoryQuantity", itemId);
-			item.setQuantity(quantity);
-		}
-		return item;
+		return sqlSession.selectOne("Item.getItem", itemId);
 	}
 }

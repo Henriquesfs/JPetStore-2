@@ -1,13 +1,16 @@
 <%@ include file="IncludeTop.jsp" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<!-- Support for Spring errors object -->
+<div class="card medium">
+
 <spring:bind path="accountForm.*">
+  <c:if test="${!empty status.errorMessages}">
+  <div class="alert">
   <c:forEach var="error" items="${status.errorMessages}">
-    <B><FONT color=RED>
-      <BR><c:out value="${error}"/>
-    </FONT></B>
+    <div><c:out value="${error}"/></div>
   </c:forEach>
+  </div>
+  </c:if>
 </spring:bind>
 
 <c:if test="${accountForm.newAccount}">
@@ -17,43 +20,39 @@
 <form action="<c:url value="/shop/editAccount.do"/>" method="post">
 </c:if>
 
-<table cellpadding="10" cellspacing="0" align="center" border="1" bgcolor="#dddddd"><tr><td>
-
-<font color="darkgreen"><h3>User Information</h3></font>
-<table border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFF88">
-<tr bgcolor="#FFFF88"><td>
-User ID:</td><td>
+<h3 class="section-title">User Information</h3>
+<div class="form-grid">
+  <label class="field wide">User ID:
 <c:if test="${accountForm.newAccount}">
   <spring:bind path="accountForm.account.username">
-	  <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
+    <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
   </spring:bind>
 </c:if>
 <c:if test="${!accountForm.newAccount}">
-  <c:out value="${accountForm.account.username}"/>
+    <span class="value"><c:out value="${accountForm.account.username}"/></span>
 </c:if>
-</td></tr><tr bgcolor="#FFFF88"><td>
-New password:</td><td>
+  </label>
+  <label class="field">New password:
   <spring:bind path="accountForm.account.password">
-	  <input type="password" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
+    <input type="password" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
   </spring:bind>
-</td></tr><tr bgcolor="#FFFF88"><td>
-Repeat password:</td><td>
+  </label>
+  <label class="field">Repeat password:
   <spring:bind path="accountForm.repeatedPassword">
-	  <input type="password" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
+    <input type="password" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
   </spring:bind>
-</td></tr>
-</table>
+  </label>
+</div>
 
 <%@ include file="IncludeAccountFields.jsp" %>
 
-</td></tr></table>
-
-<br /><center>
-<input border="0" type="image" src="../images/button_submit.gif" name="submit" value="Save Account Information" />
-</center>
+<div class="actions">
+  <button class="btn" type="submit" name="submit" value="Save Account Information">Save Account Information</button>
+</div>
 
 </form>
-<p>
-<center><b><a href="<c:url value="/shop/listOrders.do"/>">My Orders</a></b></center>
+</div>
 
-<%@ include file="IncludeBottom.jsp" %></p>
+<div class="actions"><a href="<c:url value="/shop/listOrders.do"/>"><b>My Orders</b></a></div>
+
+<%@ include file="IncludeBottom.jsp" %>

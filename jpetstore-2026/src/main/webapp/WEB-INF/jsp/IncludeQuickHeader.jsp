@@ -1,16 +1,7 @@
-<center>
-<a href="<c:url value="/shop/viewCategory.do?categoryId=FISH"/>">
-<img border="0" src="../images/sm_fish.gif" /></a>
-<img border="0" src="../images/separator.gif" />
-<a href="<c:url value="/shop/viewCategory.do?categoryId=DOGS"/>">
-<img border="0" src="../images/sm_dogs.gif" /></a>
-<img border="0" src="../images/separator.gif" />
-<a href="<c:url value="/shop/viewCategory.do?categoryId=REPTILES"/>">
-<img border="0" src="../images/sm_reptiles.gif" /></a>
-<img border="0" src="../images/separator.gif" />
-<a href="<c:url value="/shop/viewCategory.do?categoryId=CATS"/>">
-<img border="0" src="../images/sm_cats.gif" /></a>
-<img border="0" src="../images/separator.gif" />
-<a href="<c:url value="/shop/viewCategory.do?categoryId=BIRDS"/>">
-<img border="0" src="../images/sm_birds.gif" /></a>
-</center>
+  <nav class="container categories">
+    <a href="<c:url value="/shop/viewCategory.do?categoryId=FISH"/>">Fish</a>
+    <a href="<c:url value="/shop/viewCategory.do?categoryId=DOGS"/>">Dogs</a>
+    <a href="<c:url value="/shop/viewCategory.do?categoryId=REPTILES"/>">Reptiles</a>
+    <a href="<c:url value="/shop/viewCategory.do?categoryId=CATS"/>">Cats</a>
+    <a href="<c:url value="/shop/viewCategory.do?categoryId=BIRDS"/>">Birds</a>
+  </nav>

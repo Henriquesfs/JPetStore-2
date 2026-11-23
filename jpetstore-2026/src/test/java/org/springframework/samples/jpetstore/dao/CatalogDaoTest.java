@@ -1,21 +1,21 @@
 package org.springframework.samples.jpetstore.dao;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.samples.jpetstore.TestApplication;
-import org.springframework.samples.jpetstore.domain.Category;
-import org.springframework.samples.jpetstore.domain.Item;
-import org.springframework.samples.jpetstore.domain.Product;
+import org.springframework.samples.jpetstore.model.Category;
+import org.springframework.samples.jpetstore.model.Item;
+import org.springframework.samples.jpetstore.model.Product;
 
 public class CatalogDaoTest {
 
@@ -25,7 +25,7 @@ public class CatalogDaoTest {
 
 	private ItemDao itemDao;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		TestApplication.reset();
 		categoryDao = TestApplication.bean(CategoryDao.class);

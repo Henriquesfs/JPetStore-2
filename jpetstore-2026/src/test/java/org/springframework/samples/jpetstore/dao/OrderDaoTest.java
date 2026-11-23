@@ -1,14 +1,14 @@
 package org.springframework.samples.jpetstore.dao;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.samples.jpetstore.TestApplication;
-import org.springframework.samples.jpetstore.domain.Cart;
-import org.springframework.samples.jpetstore.domain.LineItem;
-import org.springframework.samples.jpetstore.domain.Order;
+import org.springframework.samples.jpetstore.model.Cart;
+import org.springframework.samples.jpetstore.model.LineItem;
+import org.springframework.samples.jpetstore.model.Order;
 
 public class OrderDaoTest {
 
@@ -18,7 +18,7 @@ public class OrderDaoTest {
 
 	private OrderDao orderDao;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		TestApplication.reset();
 		accountDao = TestApplication.bean(AccountDao.class);

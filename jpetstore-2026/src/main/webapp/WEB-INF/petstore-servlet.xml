@@ -8,7 +8,7 @@
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 			http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<context:component-scan base-package="org.springframework.samples.jpetstore.web"/>
+	<context:component-scan base-package="org.springframework.samples.jpetstore.controller"/>
 
 	<mvc:annotation-driven/>
 
@@ -18,7 +18,7 @@
 			<mvc:mapping path="/shop/listOrders.do"/>
 			<mvc:mapping path="/shop/newOrder.do"/>
 			<mvc:mapping path="/shop/viewOrder.do"/>
-			<bean class="org.springframework.samples.jpetstore.web.SignonInterceptor"/>
+			<bean class="org.springframework.samples.jpetstore.controller.SignonInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
 

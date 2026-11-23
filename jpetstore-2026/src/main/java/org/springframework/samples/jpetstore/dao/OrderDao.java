@@ -2,15 +2,13 @@ package org.springframework.samples.jpetstore.dao;
 
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
-import org.springframework.samples.jpetstore.domain.Order;
+import org.springframework.samples.jpetstore.model.Order;
 
 public interface OrderDao {
 
-  List getOrdersByUsername(String username) throws DataAccessException;
+	List<Order> getOrdersByUsername(String username);
 
-  Order getOrder(int orderId) throws DataAccessException;
+	Order getOrder(int orderId);
 
-  void insertOrder(Order order) throws DataAccessException;
-
+	void insertOrder(Order order);
 }

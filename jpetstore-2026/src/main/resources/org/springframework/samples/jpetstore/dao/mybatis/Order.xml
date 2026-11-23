@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Order">
 
-	<resultMap id="result" type="org.springframework.samples.jpetstore.domain.Order">
+	<resultMap id="result" type="org.springframework.samples.jpetstore.model.Order">
 		<result property="billAddress1" column="billaddr1"/>
 		<result property="billAddress2" column="billaddr2"/>
 		<result property="billCity" column="billcity"/>

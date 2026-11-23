@@ -2,19 +2,17 @@ package org.springframework.samples.jpetstore.dao;
 
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
-import org.springframework.samples.jpetstore.domain.Account;
+import org.springframework.samples.jpetstore.model.Account;
 
 public interface AccountDao {
 
-  Account getAccount(String username) throws DataAccessException;
+	Account getAccount(String username);
 
-  Account getAccount(String username, String password) throws DataAccessException;
+	String getPassword(String username);
 
-  void insertAccount(Account account) throws DataAccessException;
+	void insertAccount(Account account, String encodedPassword);
 
-  void updateAccount(Account account) throws DataAccessException;
+	void updateAccount(Account account, String encodedPassword);
 
-	List getUsernameList() throws DataAccessException;
-
+	List<String> getUsernameList();
 }
