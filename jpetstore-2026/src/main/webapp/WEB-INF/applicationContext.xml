@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="WEB-INF/jdbc.properties"/>
+	</bean>
+
+	<bean id="accountValidator" class="org.springframework.samples.jpetstore.domain.logic.AccountValidator"/>
+
+	<bean id="orderValidator" class="org.springframework.samples.jpetstore.domain.logic.OrderValidator"/>
+
+	<bean id="petStore" class="org.springframework.samples.jpetstore.domain.logic.PetStoreImpl">
+		<property name="accountDao" ref="accountDao"/>
+		<property name="categoryDao" ref="categoryDao"/>
+		<property name="productDao" ref="productDao"/>
+		<property name="itemDao" ref="itemDao"/>
+		<property name="orderDao" ref="orderDao"/>
+	</bean>
+
+	<aop:config>
+		<aop:advisor pointcut="execution(* *..PetStoreFacade.*(..))" advice-ref="txAdvice"/>
+	</aop:config>
+
+	<tx:advice id="txAdvice">
+		<tx:attributes>
+			<tx:method name="insert*"/>
+			<tx:method name="update*"/>
+			<tx:method name="*" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+
+</beans>

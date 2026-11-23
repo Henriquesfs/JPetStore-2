@@ -2,7 +2,6 @@ FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /build
 COPY pom.xml .
 COPY src src
-COPY war war
 RUN mvn -B -q package -DskipTests
 
 FROM tomcat:9.0-jre17-temurin
