@@ -1,0 +1,26 @@
+# Saídas do build Ant original
+.classes/
+dist/
+war/WEB-INF/lib/
+war/WEB-INF/classes/
+client/jpetstore.jar
+
+# Maven / Gradle (fases de evolução)
+target/
+build/
+.gradle/
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Variáveis de ambiente locais
+.env

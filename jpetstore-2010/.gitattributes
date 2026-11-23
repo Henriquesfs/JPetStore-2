@@ -1,0 +1,8 @@
+# Normaliza finais de linha para que os diffs "Antes vs. Depois" fiquem limpos
+* text=auto
+*.sh text eol=lf
+*.bat text eol=crlf
+*.gif binary
+*.jpg binary
+*.png binary
+*.jar binary
